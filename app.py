@@ -173,9 +173,9 @@ class UltraOptimizedOSMonitor: # god class
         control_frame = ttk.Frame(header_frame)
         control_frame.pack(side=tk.RIGHT)
 
-        ttk.Button(control_frame, text="🔄 Atualizar Tudo",
+        ttk.Button(control_frame, text=" Atualizar Tudo",
                    command=self.force_update_all).pack(side=tk.LEFT, padx=5)
-        ttk.Button(control_frame, text="🌗 Alternar Tema",
+        ttk.Button(control_frame, text=" Alternar Tema",
                    command=self.toggle_theme).pack(side=tk.LEFT, padx=5)
 
         # Notebook
@@ -191,13 +191,13 @@ class UltraOptimizedOSMonitor: # god class
 
     def setup_dashboard_tab(self):
         dashboard_tab = ttk.Frame(self.notebook)
-        self.notebook.add(dashboard_tab, text="🏠 Dashboard")
+        self.notebook.add(dashboard_tab, text=" Dashboard")
 
         main_frame = ttk.Frame(dashboard_tab)
         main_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
         # Métricas (Esquerda)
-        metrics_frame = ttk.LabelFrame(main_frame, text="⚡ Métricas em Tempo Real", padding=15)
+        metrics_frame = ttk.LabelFrame(main_frame, text=" Métricas em Tempo Real", padding=15)
         metrics_frame.grid(row=0, column=0, sticky="nsew", padx=(0, 10))
 
         self.cpu_var = tk.StringVar(value="0%")
@@ -244,7 +244,7 @@ class UltraOptimizedOSMonitor: # god class
 
         ttk.Button(action_frame, text=" Gráficos Detalhados",
                    command=lambda: self.notebook.select(4)).pack(side=tk.LEFT, padx=5)
-        ttk.Button(action_frame, text="⚡ Consumo Energia",
+        ttk.Button(action_frame, text=" Consumo Energia",
                    command=lambda: self.notebook.select(5)).pack(side=tk.LEFT, padx=5)
 
         # Log de Info (Direita)
@@ -260,7 +260,7 @@ class UltraOptimizedOSMonitor: # god class
 
     def setup_process_tab(self):
         process_tab = ttk.Frame(self.notebook)
-        self.notebook.add(process_tab, text="🔍 Processos")
+        self.notebook.add(process_tab, text=" Processos")
 
         # Frame superior com controles
         top_frame = ttk.Frame(process_tab)
@@ -440,7 +440,7 @@ class UltraOptimizedOSMonitor: # god class
     def setup_energy_tab(self):
         """Aba para monitoramento de energia e temperatura"""
         energy_tab = ttk.Frame(self.notebook)
-        self.notebook.add(energy_tab, text="⚡ Energia & Temperatura")
+        self.notebook.add(energy_tab, text=" Energia & Temperatura")
 
         # Frame principal
         main_frame = ttk.Frame(energy_tab)
@@ -484,7 +484,7 @@ class UltraOptimizedOSMonitor: # god class
                   font=('Arial', 10)).grid(row=8, column=0, columnspan=2, sticky="w", pady=2)
 
         # Frame direito - Gráficos
-        right_frame = ttk.LabelFrame(main_frame, text="📈 Gráficos de Energia", padding=10)
+        right_frame = ttk.LabelFrame(main_frame, text=" Gráficos de Energia", padding=10)
         right_frame.grid(row=0, column=1, sticky="nsew")
 
         self.fig_energy = Figure(figsize=(8, 6), dpi=80)
@@ -509,9 +509,9 @@ class UltraOptimizedOSMonitor: # god class
 
         ttk.Button(control_frame, text=" Atualizar Dados",
                    command=self.update_energy_data).pack(side=tk.LEFT, padx=5)
-        ttk.Button(control_frame, text="⚡ Modo Economia",
+        ttk.Button(control_frame, text=" Modo Economia",
                    command=self.enable_power_save).pack(side=tk.LEFT, padx=5)
-        ttk.Button(control_frame, text="📊 Relatório Detalhado",
+        ttk.Button(control_frame, text=" Relatório Detalhado",
                    command=self.show_energy_report).pack(side=tk.LEFT, padx=5)
 
         main_frame.columnconfigure(0, weight=1)
@@ -527,7 +527,7 @@ class UltraOptimizedOSMonitor: # god class
         self.collect_processes()
         self.collect_system_info()
         self.update_energy_data()
-        messagebox.showinfo("Atualizado", "✅ Todos os dados foram atualizados!")
+        messagebox.showinfo("Atualizado", " Todos os dados foram atualizados!")
 
     # ====== FUNÇÕES DE GRÁFICOS DETALHADOS ======
 
@@ -684,28 +684,28 @@ class UltraOptimizedOSMonitor: # god class
                     power_plugged = battery.power_plugged
                     secsleft = battery.secsleft
 
-                    self.battery_percent_var.set(f"🔋 Bateria: {percent}%")
+                    self.battery_percent_var.set(f" Bateria: {percent}%")
 
                     if power_plugged:
-                        self.battery_power_var.set("🔌 Conectado à energia")
+                        self.battery_power_var.set(" Conectado à energia")
                         self.battery_status_var.set("Status: Carregando")
                     else:
-                        self.battery_power_var.set("🔋 Usando bateria")
+                        self.battery_power_var.set(" Usando bateria")
                         self.battery_status_var.set("Status: Descarregando")
 
                     if secsleft == psutil.POWER_TIME_UNLIMITED:
-                        self.battery_time_var.set("⏰ Tempo restante: Ilimitado (conectado)")
+                        self.battery_time_var.set(" Tempo restante: Ilimitado (conectado)")
                     elif secsleft == psutil.POWER_TIME_UNKNOWN:
-                        self.battery_time_var.set("⏰ Tempo restante: Desconhecido")
+                        self.battery_time_var.set(" Tempo restante: Desconhecido")
                     else:
                         hours = secsleft // 3600
                         minutes = (secsleft % 3600) // 60
-                        self.battery_time_var.set(f"⏰ Tempo restante: {hours}h {minutes}min")
+                        self.battery_time_var.set(f" Tempo restante: {hours}h {minutes}min")
                 else:
-                    self.battery_percent_var.set("🔋 Bateria: Não disponível")
-                    self.battery_power_var.set("🔌 Status: Não disponível")
+                    self.battery_percent_var.set(" Bateria: Não disponível")
+                    self.battery_power_var.set(" Status: Não disponível")
             else:
-                self.battery_percent_var.set("🔋 Bateria: API não disponível")
+                self.battery_percent_var.set(" Bateria: API não disponível")
 
             # 2. Informações de temperatura
             if hasattr(psutil, 'sensors_temperatures'):
@@ -914,7 +914,7 @@ class UltraOptimizedOSMonitor: # god class
 
         # Mostrar resultado
         if fail_count == 0:
-            messagebox.showinfo("Sucesso", f"✅ {success_count} processo(s) finalizado(s) com sucesso!")
+            messagebox.showinfo("Sucesso", f" {success_count} processo(s) finalizado(s) com sucesso!")
         else:
             messagebox.showwarning("Resultado",
                                    f" {success_count} processo(s) finalizado(s) com sucesso!\n"
@@ -973,7 +973,7 @@ class UltraOptimizedOSMonitor: # god class
             button_frame = ttk.Frame(details_window)
             button_frame.pack(fill=tk.X, padx=10, pady=10)
 
-            ttk.Button(button_frame, text="💀 Finalizar Processo",
+            ttk.Button(button_frame, text=" Finalizar Processo",
                        command=lambda: [details_window.destroy(),
                                         self.terminate_single_process(pid, proc.name())],
                        style="Danger.TButton").pack(side=tk.LEFT, padx=5)
